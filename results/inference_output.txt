@@ -1,0 +1,14 @@
+GPU: NVIDIA GeForce RTX 4090
+Loading model: Qwen/Qwen2.5-0.5B-Instruct
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  62%|██████▏   | 181/290 [00:00<00:00, 1215.34it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 1563.68it/s]
+
+AI Response:
+NVIDIA CUDA cores and Tensor Cores enable GPUs to perform complex computations much faster than traditional CPUs, thanks to their parallel processing capabilities. This accelerates AI inference by allowing the GPU to handle multiple tasks simultaneously, significantly reducing the time required for training models or running simulations.
+
+Inference Metrics:
+Generation time: 1.448 seconds
+Generated tokens: 55
+Generation rate: 37.98 tokens/sec
+GPU memory allocated: 958.29 MiB
+
+Inference demonstration completed.
