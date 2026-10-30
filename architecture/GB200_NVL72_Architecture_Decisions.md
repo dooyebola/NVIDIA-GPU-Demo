@@ -320,3 +320,86 @@ cost, and failure-domain analysis is required.
 Conceptual architecture comparison only.
 
 No NVIDIA GB200 NVL72 deployment has occurred.
+
+## Architecture Decision 006 — GPU Cost and Performance Evaluation
+
+**Status:** Hypothetical Analysis — Not Validated
+
+### Objective
+
+Compare the potential cost efficiency of
+16-, 24-, and 72-GPU allocations for
+enterprise AI inference.
+
+### Modeling Assumptions
+
+- Hypothetical GPU cost: $10 per GPU-hour
+- Monthly operating hours: 730
+- Workload load factor: 60%
+- Full NVL72 rack: 72 GPUs
+- All throughput values are fictional.
+
+### Assumed Peak Output Throughput
+
+- 16 GPUs: 1,000 tokens/second
+- 24 GPUs: 1,600 tokens/second
+- 72 GPUs: 4,200 tokens/second
+
+### Allocated GPU Cost Results
+
+| GPUs | Monthly Cost | Cost / 1M Output Tokens |
+|---|---|---|
+| 16 | $116,800 | $74.07 |
+| 24 | $175,200 | $69.44 |
+| 72 | $525,600 | $79.37 |
+
+### Full-Rack Billing Results
+
+| Active GPUs | Cost / 1M Output Tokens |
+|---|---|
+| 16 | $333.33 |
+| 24 | $208.33 |
+| 72 | $79.37 |
+
+### Preliminary Findings
+
+Under the fictional allocated-GPU billing
+and throughput assumptions, the 24-GPU
+option has the lowest modeled cost per
+million generated tokens.
+
+Under full-rack billing, the 72-GPU
+configuration produces the lowest modeled
+cost per million tokens for this workload.
+
+These findings are entirely dependent on
+the assumed prices, throughput and load.
+
+### Risks and Limitations
+
+- No NVIDIA GB200 throughput was measured.
+- GPU hourly pricing is hypothetical.
+- Independent deployment feasibility is unverified.
+- Real hardware topology may restrict allocations.
+- Power, cooling and networking costs are excluded.
+- Storage, support and maintenance are excluded.
+- Input-token processing costs are excluded.
+- Latency and availability targets are unvalidated.
+- Idle rack capacity may serve other workloads.
+
+### Recommendation
+
+No final GPU configuration is selected.
+
+Obtain actual vendor pricing and performance
+measurements before making a procurement
+or deployment recommendation.
+
+Evaluate hardware topology, workload latency,
+throughput, resilience and total cost of ownership.
+
+### Validation Status
+
+Conceptual cost-modeling exercise only.
+
+No GB200 NVL72 system was deployed or benchmarked.
