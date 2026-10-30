@@ -1,0 +1,113 @@
+<mxfile host="app.diagrams.net" agent="ChatGPT">
+  <diagram id="GB200NVL72-REF" name="GB200 NVL72 - Logical Architecture">
+    <mxGraphModel dx="2175" dy="1143" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="1140" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="canvas" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="1100" width="1470" x="15" y="15" as="geometry" />
+        </mxCell>
+        <mxCell id="hdr" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#17253B;strokeColor=none;fontColor=#FFFFFF;fontSize=24;fontStyle=1;align=left;spacingLeft=26;" value="GB200 NVL72  |  Conceptual AI Inference Architecture" vertex="1">
+          <mxGeometry height="68" width="1430" x="35" y="32" as="geometry" />
+        </mxCell>
+        <mxCell id="sub" parent="1" style="whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;fontColor=#64748B;fontSize=13;fontStyle=1;align=left;" value="DESIGN STUDY  •  NVIDIA REFERENCE HARDWARE  •  NOT A PRODUCTION DEPLOYMENT" vertex="1">
+          <mxGeometry height="30" width="1400" x="40" y="111" as="geometry" />
+        </mxCell>
+        <mxCell id="lane1" parent="1" style="whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;fontColor=#334155;fontSize=13;fontStyle=1;align=left;" value="APPLICATION / INFERENCE CONTROL PLANE" vertex="1">
+          <mxGeometry height="26" width="1380" x="45" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="rack_bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF4F8;strokeColor=#7D9AB5;strokeWidth=2;dashed=1;dashPattern=5 3;" value="" vertex="1">
+          <mxGeometry height="415" width="1172" x="243" y="354" as="geometry" />
+        </mxCell>
+        <mxCell id="rack_title" parent="1" style="whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;fontColor=#1E3A5F;fontSize=16;fontStyle=1;align=left;" value="NVL72 RACK-SCALE COMPUTE DOMAIN  •  72 GPUs / 36 CPUs" vertex="1">
+          <mxGeometry height="35" width="1100" x="270" y="371" as="geometry" />
+        </mxCell>
+        <mxCell id="support_label" parent="1" style="whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;fontColor=#334155;fontSize=13;fontStyle=1;align=left;" value="SUPPORTING INFRASTRUCTURE (DESIGN-CHOICE PLACEHOLDERS)" vertex="1">
+          <mxGeometry height="30" width="1380" x="45" y="803" as="geometry" />
+        </mxCell>
+        <mxCell id="E1" edge="1" parent="1" source="clients" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#64748B;strokeWidth=2.5;fontSize=11;fontColor=#334155;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="ingress" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="E2" edge="1" parent="1" source="ingress" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#64748B;strokeWidth=2.5;fontSize=11;fontColor=#334155;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="serving" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="E3" edge="1" parent="1" source="control" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#64748B;strokeWidth=2.5;fontSize=11;fontColor=#334155;exitX=0;exitY=0.5;entryX=1;entryY=0.5;flowAnimation=1;" target="serving" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="25xygXwEnUMgEp9lRtoK-2" connectable="0" parent="E3" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;fontColor=#334155;" value="Deployment / Scheduling Control" vertex="1">
+          <mxGeometry relative="1" x="0.0391" y="2" as="geometry">
+            <mxPoint y="-81" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E4" edge="1" parent="1" source="serving" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#64748B;strokeWidth=2.5;fontSize=11;fontColor=#334155;exitX=0.52;exitY=1;entryX=0.50;entryY=0;" target="compute" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="E5" edge="1" parent="1" source="compute" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;startArrow=block;startFill=1;endArrow=block;endFill=1;strokeColor=#07866B;strokeWidth=3;fontSize=11;fontColor=#047857;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="nvlink" value="INTRA-RACK NVLINK">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="E6" edge="1" parent="1" source="compute" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#64748B;strokeWidth=2.5;fontSize=11;fontColor=#334155;exitX=0.9;exitY=0;entryX=0.35;entryY=0;" target="fabric" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="570" y="417" />
+              <mxPoint x="1134" y="417" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E7" edge="1" parent="1" source="store" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=2;dashed=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" target="serving" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="785" />
+              <mxPoint x="200" y="337" />
+              <mxPoint x="812" y="337" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E8" edge="1" parent="1" source="monitor" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=2;dashed=1;exitX=0.5;exitY=0;entryX=0.3;entryY=1;" target="compute" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="E9" edge="1" parent="1" source="management" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=2;dashed=1;exitX=0.5;exitY=0;entryX=0.7;entryY=1;" target="fabric" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="clients" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=18;spacingRight=10;fillColor=#FFFFFF;strokeColor=#9FB5CE;fontColor=#17253B;fontSize=14;" value="&lt;b&gt;Client applications&lt;/b&gt;&lt;br&gt;Inference requests&lt;br&gt;Auth / quotas / tenant SLAs" vertex="1">
+          <mxGeometry height="113" width="230" x="45" y="211" as="geometry" />
+        </mxCell>
+        <mxCell id="ingress" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=18;spacingRight=10;fillColor=#FFFFFF;strokeColor=#9FB5CE;fontColor=#17253B;fontSize=14;" value="&lt;b&gt;API gateway / load balancer&lt;/b&gt;&lt;br&gt;TLS, rate limits&lt;br&gt;Request routing" vertex="1">
+          <mxGeometry height="113" width="275" x="319" y="211" as="geometry" />
+        </mxCell>
+        <mxCell id="serving" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=18;spacingRight=10;fillColor=#FFFFFF;strokeColor=#9FB5CE;fontColor=#17253B;fontSize=14;" value="&lt;div&gt;&lt;b&gt;Inference serving tier&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;vLLM (proposed)&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;LLM serving / continuous batching&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;OpenAI-compatible API&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Multi-GPU setup TBD&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="113" width="323" x="650" y="211" as="geometry" />
+        </mxCell>
+        <mxCell id="control" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=18;spacingRight=10;fillColor=#FFFFFF;strokeColor=#9FB5CE;fontColor=#17253B;fontSize=14;" value="&lt;div&gt;&lt;b&gt;Workload control plane&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Kubernetes (proposed)&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;NVIDIA GPU Operator&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Scheduling / health / rollout&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;NVL72 integration TBD&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="113" width="340" x="1030" y="211" as="geometry" />
+        </mxCell>
+        <mxCell id="compute" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=18;spacingRight=10;fillColor=#EAFBF3;strokeColor=#0D8A68;fontColor=#0F513F;fontSize=14;" value="&lt;b&gt;GB200 compute trays&lt;/b&gt;&lt;br&gt;18 × 1RU trays&lt;br&gt;2 Grace CPUs + 4 B200 GPUs / tray&lt;br&gt;&lt;b&gt;Total: 36 Grace CPUs, 72 Blackwell GPUs&lt;/b&gt;" vertex="1">
+          <mxGeometry height="141" width="340" x="275" y="447" as="geometry" />
+        </mxCell>
+        <mxCell id="nvlink" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=18;spacingRight=10;fillColor=#DFF6EF;strokeColor=#0D8A68;fontColor=#0F513F;fontSize=14;" value="&lt;b&gt;In-rack GPU fabric&lt;/b&gt;&lt;br&gt;9 × NVLink switch trays&lt;br&gt;72-GPU NVLink domain&lt;br&gt;GPU-to-GPU collective traffic" vertex="1">
+          <mxGeometry height="141" width="301" x="677" y="447" as="geometry" />
+        </mxCell>
+        <mxCell id="fabric" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=18;spacingRight=10;fillColor=#EFF6FF;strokeColor=#2563EB;fontColor=#1E3A8A;fontSize=14;" value="&lt;b&gt;External Scale-out Compute Network&lt;/b&gt;&lt;br&gt;&lt;div&gt;Proposed: NVIDIA InfiniBand NDR400&lt;/div&gt;&lt;div&gt;ConnectX-7 400Gb/s network interfaces&lt;/div&gt;&lt;div&gt;Inter-rack GPU communication&lt;/div&gt;&lt;div&gt;Redundancy and topology: design TBD&lt;/div&gt;" vertex="1">
+          <mxGeometry height="141" width="336" x="1510" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="rack_note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=18;spacingRight=10;fillColor=#FFFFFF;strokeColor=#BDCBD9;fontColor=#334155;fontSize=13;" value="&lt;b&gt;Architecture boundary:&lt;/b&gt; NVLink is the rack-local GPU interconnect. The scale-out fabric connects racks and other systems. Exact NIC topology, optics, switching, and redundancy are design decisions—not inferred from this diagram." vertex="1">
+          <mxGeometry height="95" width="1100" x="272" y="626" as="geometry" />
+        </mxCell>
+        <mxCell id="store" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=18;spacingRight=10;fillColor=#FFFFFF;strokeColor=#A5B4C5;fontColor=#334155;fontSize=14;" value="&lt;b&gt;Model / data storage&lt;/b&gt;&lt;br&gt;Object store, artifact registry,&lt;br&gt;high-throughput cache&lt;br&gt;&lt;i&gt;Capacity TBD&lt;/i&gt;" vertex="1">
+          <mxGeometry height="132" width="300" x="45" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="monitor" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=18;spacingRight=10;fillColor=#FFFFFF;strokeColor=#A5B4C5;fontColor=#334155;fontSize=14;" value="&lt;b&gt;Observability&lt;/b&gt;&lt;br&gt;GPU, queue, latency, tokens/sec&lt;br&gt;Logs / metrics / alerts&lt;br&gt;&lt;i&gt;SLIs and SLOs TBD&lt;/i&gt;" vertex="1">
+          <mxGeometry height="132" width="300" x="384" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="management" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=18;spacingRight=10;fillColor=#FFFFFF;strokeColor=#A5B4C5;fontColor=#334155;fontSize=14;" value="&lt;b&gt;Management / OOB&lt;/b&gt;&lt;br&gt;BMC, provisioning, access control&lt;br&gt;Firmware lifecycle&lt;br&gt;&lt;i&gt;Segmentation TBD&lt;/i&gt;" vertex="1">
+          <mxGeometry height="132" width="300" x="724" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="facility" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=18;spacingRight=10;fillColor=#FFF7E8;strokeColor=#D39A3A;fontColor=#7C4A0D;fontSize=14;" value="&lt;b&gt;Facility dependencies&lt;/b&gt;&lt;br&gt;Liquid cooling + air cooling&lt;br&gt;Power distribution / redundancy&lt;br&gt;&lt;i&gt;Site capacity TBD&lt;/i&gt;" vertex="1">
+          <mxGeometry height="132" width="308" x="1064" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="source" parent="1" style="whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;fontColor=#64748B;fontSize=12;align=left;" value="Reference: NVIDIA DGX GB Rack Scale Systems User Guide and NVIDIA GB200 NVL Multi-Node Tuning Guide. Architecture is a learning case study; choices marked TBD require workload and site assumptions." vertex="1">
+          <mxGeometry height="46" width="1390" x="44" y="1030" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
