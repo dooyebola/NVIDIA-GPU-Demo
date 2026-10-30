@@ -403,3 +403,89 @@ throughput, resilience and total cost of ownership.
 Conceptual cost-modeling exercise only.
 
 No GB200 NVL72 system was deployed or benchmarked.
+
+
+## Architecture Decision 007 — Performance Validation Plan
+
+**Status:** Planned — Not Yet Validated
+
+### Objective
+
+Define a repeatable testing strategy for
+AI inference performance, scalability,
+resource utilization, and reliability.
+
+### Reference Workload
+
+- Model: Llama 3.1 405B Instruct
+- Precision: BF16
+- Maximum context: 32,000 tokens
+- Concurrent active requests target: 100
+- Availability objective: 99.9%
+- p95 time to first token: <= 5 seconds
+
+### Required Performance Metrics
+
+1. Time to First Token (TTFT)
+2. Time per Output Token (TPOT)
+3. End-to-End Request Latency
+4. Output Tokens per Second
+5. Successful Requests per Second
+6. GPU Memory Utilization
+7. KV-Cache Utilization
+8. Request Error Rate
+9. Queue Waiting Time
+
+### Proposed Load Tests
+
+Test A:
+Single-client inference baseline
+
+Test B:
+5 concurrent clients
+
+Test C:
+10 concurrent clients
+
+Test D:
+25 concurrent clients
+
+Test E:
+50 concurrent clients
+
+Test F:
+100 concurrent clients
+
+### Workload Variation
+
+Test different prompt and output lengths,
+including short, medium, and long contexts.
+
+Record performance under controlled load.
+
+### Acceptance Criteria
+
+- p95 TTFT <= 5 seconds
+- Availability objective: 99.9%
+- No GPU out-of-memory failures
+- Output throughput sufficient for demand
+- Error-rate threshold: To be defined
+- p95 TPOT target: To be defined
+
+### Validation Strategy
+
+Use vLLM benchmarking tools and GPU telemetry.
+
+Record configuration, software versions,
+request distributions, latency, throughput,
+error rate, and GPU memory use.
+
+### Limitations
+
+No GB200 NVL72 performance has been measured.
+
+Initial RTX 4090 lab results cannot establish
+GB200 NVL72 production performance.
+
+All capacity and cost recommendations
+remain provisional.
