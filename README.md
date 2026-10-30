@@ -160,3 +160,47 @@ AI infrastructure engineering exercises.
 It demonstrates practical learning and verified
 technical execution, while distinguishing lab
 experience from production infrastructure ownership.
+
+## vLLM Inference API and Concurrency Benchmark
+
+### Deployment
+
+- GPU: NVIDIA GeForce RTX 4090
+- Cloud provider: RunPod
+- Inference server: vLLM 0.32.0
+- Model: Qwen2.5-0.5B-Instruct
+- API: OpenAI-compatible chat completions
+- Health endpoint: HTTP 200 OK
+- Model endpoint: Verified
+- API inference request: Successful
+
+### Measured Performance
+
+| Concurrency | Output Tokens/sec | p95 TTFT |
+|---|---:|---:|
+| 1 | 425.80 | 19.12 ms |
+| 5 | 511.78 | 1801.90 ms |
+| 10 | 606.09 | 1760.43 ms |
+
+All 60 measured requests succeeded.
+
+These results demonstrate an increase in
+aggregate output throughput with higher concurrency,
+accompanied by significantly higher first-token latency.
+
+### Benchmark Limitations
+
+- Small synthetic workload
+- 20 measured requests per concurrency level
+- Single RTX 4090 GPU
+- No sustained production load test
+- No GB200 NVL72 performance validation
+- No AMD ROCm hardware testing
+
+### Evidence
+
+- `results/vllm_c1.json`
+- `results/vllm_c5.json`
+- `results/vllm_c10.json`
+- `results/vllm_benchmark_summary.txt`
+- `results/vllm_gpu_telemetry.csv`
