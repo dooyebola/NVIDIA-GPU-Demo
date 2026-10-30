@@ -110,3 +110,122 @@ No physical GB200 NVL72 system has been tested.
 
 The full 72-GPU rack has not yet been
 justified by capacity or performance analysis.
+
+
+## Architecture Decision 004 — KV Cache and GPU Sizing
+
+**Status:** Preliminary / Not Validated
+
+### Reference Model
+
+Meta Llama 3.1 405B Instruct
+
+- Parameters: approximately 405 billion
+- Layers: 126
+- Attention heads: 128
+- KV heads: 8
+- Head dimension: 128
+- Weight precision: BF16
+- KV-cache precision: BF16 (assumed)
+
+### Workload Assumptions
+
+- Maximum active tokens per request: 32,000
+- Concurrent active requests: 100
+- All requests at full context: worst-case scenario
+- Availability objective: 99.9%
+- p95 first-token latency target: <= 5 seconds
+
+### Model Weight Memory
+
+405,000,000,000 parameters * 2 bytes
+
+Estimated weight memory: 810 GB
+
+### KV Cache Per Token
+
+Formula:
+
+2 * layers * KV heads * head dimension * bytes
+
+2 * 126 * 8 * 128 * 2 = 516,096 bytes
+
+KV cache per token: 504 KiB
+
+### Total KV Cache
+
+516,096 * 32,000 * 100
+
+Total: 1,651,507,200,000 bytes
+
+Approximately 1.652 TB of KV-cache memory.
+
+### Combined Memory
+
+Model weights: 810 GB
+KV cache: 1,651.5 GB
+
+Combined: approximately 2,461.5 GB (2.462 TB)
+
+Excluded:
+- Runtime overhead
+- Memory fragmentation
+- Communication buffers
+- Temporary allocations
+- Replica and failover requirements
+
+### Preliminary GB200 GPU Comparison
+
+Assumed nominal HBM3e per GPU: 186 GB
+
+8 GPUs:
+1,488 GB — insufficient.
+
+16 GPUs:
+2,976 GB — theoretical fit with limited headroom.
+
+24 GPUs:
+4,464 GB — more memory headroom.
+
+72 GPUs:
+13,392 GB — not justified by memory alone.
+
+### Proposed Evaluation Baseline
+
+24 GB200 GPUs
+
+Initial candidate configuration:
+- Tensor parallelism: 8
+- Pipeline parallelism: 3
+
+Requires validation of:
+- Model partitioning
+- vLLM and GB200 compatibility
+- KV-cache distribution
+- Runtime memory requirements
+- Latency and throughput
+- NVLink topology and scheduling
+- Infrastructure cost
+
+### Architecture Recommendation
+
+Do not assume the full 72-GPU NVL72 rack is
+necessary for this workload.
+
+Evaluate smaller GPU allocations first.
+
+Select the final GPU count based on measured
+performance, memory utilization, availability,
+and total cost.
+
+### Limitations
+
+All calculations are theoretical.
+
+No GB200 NVL72 hardware has been tested.
+
+The 99.9% availability objective cannot be
+established from memory sizing alone.
+
+Additional failure-domain and redundancy
+analysis is required.
