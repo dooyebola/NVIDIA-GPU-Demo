@@ -10,6 +10,7 @@ NVIDIA GeForce RTX 4090.
 ## Technologies
 
 ### Used and Verified
+
 - Windows 11
 - Visual Studio Code
 - Git and GitHub
@@ -21,16 +22,19 @@ NVIDIA GeForce RTX 4090.
 - PyTorch
 - Hugging Face Transformers
 - Qwen2.5-0.5B-Instruct
+- vLLM 0.32.0
+- NVIDIA GPU monitoring with nvidia-smi
 
-### Planned Technologies
-- Docker
-- vLLM
-- NVIDIA GPU monitoring tools
+### Planned / Not Yet Tested
+
+- AMD ROCm
+- Docker deployment workflows
 - Prometheus and Grafana
 
 ## Demonstration Progress
 
 ### Completed
+
 - [x] NVIDIA RTX 4090 deployment on RunPod
 - [x] NVIDIA driver validation
 - [x] PyTorch CUDA availability verification
@@ -38,17 +42,26 @@ NVIDIA GeForce RTX 4090.
 - [x] GPU benchmark results recorded
 - [x] AI language model loaded onto the GPU
 - [x] Successful AI model inference
-- [x] Single-request inference timing measurement
+- [x] Single-request inference timing
 - [x] GPU memory allocation measurement
+- [x] vLLM 0.32.0 installation
+- [x] OpenAI-compatible inference API deployment
+- [x] API health and model endpoint verification
+- [x] Successful HTTP inference request
+- [x] Concurrent inference benchmarking
+- [x] GPU telemetry collection
+- [x] Benchmark results published to GitHub
+- [x] Conceptual GB200 NVL72 architecture design
+- [x] GPU memory and capacity calculations
+- [x] Hypothetical GPU infrastructure cost analysis
+- [x] Architecture Decisions 002–007 documented
 
-### Upcoming
-- [ ] Deploy vLLM inference API server
-- [ ] Test inference API endpoints
-- [ ] Benchmark concurrent inference requests
-- [ ] Monitor GPU utilization under load
-- [ ] Measure inference latency and throughput
-- [ ] Design NVIDIA NVL72 reference architecture
-- [ ] Compare NVIDIA CUDA and AMD ROCm
+### Future Work
+
+- [ ] AMD ROCm hands-on deployment
+- [ ] Long-duration production-style load testing
+- [ ] NVL72 hardware performance validation
+- [ ] Production infrastructure deployment
 
 ## Verified GPU Environment
 
@@ -114,43 +127,103 @@ See `results/inference_output.txt`.
 
 ## Project Files
 
+### NVIDIA GPU Demonstrations
+
 - `README.md` - Project documentation
-- `gpu_benchmark.py` - GPU computation benchmark
-- `inference_demo.py` - AI inference demonstration
-- `results/gpu_benchmark.txt` - GPU benchmark results
+- `gpu_benchmark.py` - CUDA GPU computation benchmark
+- `inference_demo.py` - PyTorch AI inference demonstration
+
+### GB200 NVL72 Architecture
+
+- [Architecture Decisions](architecture/GB200_NVL72_Architecture_Decisions.md)
+- [Reference Architecture Diagram](architecture/GB200_NVL72_Reference_Architecture.drawio)
+- [GPU Capacity Calculator](architecture/gpu_capacity_calculator.py)
+- [GPU Cost Model](architecture/gpu_cost_model.py)
+
+### Benchmark Results
+
+- `results/gpu_benchmark.txt` - GPU computation results
 - `results/inference_output.txt` - AI inference results
+- `results/gpu_capacity_analysis.txt` - GPU memory sizing
+- `results/gpu_cost_analysis.txt` - Hypothetical cost analysis
+- `results/vllm_benchmark_summary.txt` - Concurrency benchmarks
+- `results/vllm_c1.json` - Concurrency 1 results
+- `results/vllm_c5.json` - Concurrency 5 results
+- `results/vllm_c10.json` - Concurrency 10 results
+- `results/vllm_gpu_telemetry.csv` - GPU monitoring data
 
-## Next Phase: AI Inference API
 
-The next milestone is to deploy an API-based
-inference service using vLLM.
+## Completed: AI Inference API Deployment
 
-Planned activities:
+Deployed vLLM 0.32.0 on a cloud-hosted NVIDIA
+RTX 4090 using RunPod.
 
-1. Configure and start a vLLM inference server.
-2. Load an AI language model onto the RTX 4090.
-3. Send requests through an API endpoint.
-4. Benchmark sequential and concurrent requests.
-5. Collect GPU utilization and memory metrics.
-6. Document architecture and deployment decisions.
-7. Publish reproducible configuration and results.
+Successfully served Qwen2.5-0.5B-Instruct
+through an OpenAI-compatible inference API.
 
-## Future Infrastructure Architecture Project
+Validated the API health endpoint, model
+listing, and chat completion requests.
 
-Develop a conceptual NVIDIA NVL72 AI infrastructure
-reference architecture covering:
+Conducted concurrency benchmarks with
+1, 5, and 10 simultaneous requests.
 
-- GPU compute architecture
-- NVLink interconnect topology
-- High-speed networking
-- Storage architecture
-- Workload orchestration
-- Power and liquid cooling requirements
-- Infrastructure monitoring
-- Fault tolerance and scalability
+All 60 measured requests completed successfully.
 
-This will be a design study, not a claim of
-physical NVL72 deployment experience.
+The highest measured output throughput was
+606.09 tokens/second during the 10-concurrent
+request test.
+
+Higher concurrency improved aggregate throughput
+but increased first-token latency.
+
+See the vLLM Inference API and Concurrency
+Benchmark section below for detailed results.
+
+## GB200 NVL72 Conceptual Reference Architecture
+
+Completed a conceptual AI infrastructure
+architecture study based on the NVIDIA
+GB200 NVL72 rack-scale system.
+
+### Architecture Components
+
+- 72 NVIDIA Blackwell GPUs
+- 36 NVIDIA Grace CPUs
+- 18 GB200 compute trays
+- 9 NVLink switch trays
+- Internal NVLink GPU interconnect
+- Proposed external InfiniBand networking
+- Proposed vLLM inference serving
+- Proposed Kubernetes orchestration
+- GPU monitoring and management
+- Storage and facility considerations
+
+### Engineering Analysis
+
+- 405B parameter reference model
+- BF16 model-weight calculations
+- KV-cache memory estimation
+- GPU capacity comparison
+- Hypothetical infrastructure cost modeling
+- Performance validation planning
+
+### Project Documentation
+
+- [Architecture Decisions](architecture/GB200_NVL72_Architecture_Decisions.md)
+- [Editable Architecture Diagram](architecture/GB200_NVL72_Reference_Architecture.drawio)
+- [GPU Capacity Calculator](architecture/gpu_capacity_calculator.py)
+- [GPU Cost Model](architecture/gpu_cost_model.py)
+
+### Important Limitations
+
+This architecture is an independent design study.
+
+No physical GB200 NVL72 system was deployed.
+
+Hardware capacity, performance, reliability,
+and costs have not been production-validated.
+
+Hypothetical cost assumptions are not vendor quotes.
 
 ## Project Purpose
 
