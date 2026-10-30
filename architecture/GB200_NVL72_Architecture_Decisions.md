@@ -229,3 +229,94 @@ established from memory sizing alone.
 
 Additional failure-domain and redundancy
 analysis is required.
+
+
+## Architecture Decision 005 — GPU Configuration Comparison
+
+**Status:** Under Evaluation
+
+### Business Objective
+
+Identify a technically feasible and cost-effective
+GPU configuration for enterprise large-model inference.
+
+### Workload Requirements
+
+- Reference model: Llama 3.1 405B Instruct
+- Precision: BF16
+- Active context: 32,000 tokens per request
+- Concurrent active requests: 100
+- Availability target: 99.9%
+- p95 first-token latency target: <= 5 seconds
+
+### Option A — 16 GB200 GPUs
+
+Nominal GPU memory: 2,976 GB
+Theoretical memory headroom: 514.49 GB
+
+Advantages:
+- Lower allocated GPU count
+- Potentially lower compute resource consumption
+
+Risks:
+- Limited memory headroom
+- Runtime overhead not included
+- Performance and feasibility unvalidated
+
+### Option B — 24 GB200 GPUs
+
+Nominal GPU memory: 4,464 GB
+Theoretical memory headroom: 2,002.49 GB
+
+Advantages:
+- Greater theoretical memory headroom
+- Additional capacity for runtime allocations
+
+Risks:
+- Parallelism configuration requires validation
+- Latency and throughput remain unknown
+- Infrastructure cost remains unknown
+
+### Option C — Full GB200 NVL72 Rack
+
+Nominal GPU memory: 13,392 GB
+Theoretical memory headroom: 10,930.49 GB
+
+Advantages:
+- Full rack-scale GPU infrastructure
+- Substantial aggregate GPU memory
+- Potential capacity for additional workloads
+
+Risks:
+- High infrastructure and facility requirements
+- Power and liquid-cooling dependencies
+- May be oversized for the reference workload
+
+### Cost Evaluation
+
+The following must be established:
+
+1. Supported hardware deployment configurations
+2. Capital or rental infrastructure costs
+3. GPU utilization and workload throughput
+4. Power and cooling requirements
+5. Networking and storage costs
+6. Operations and support costs
+7. Availability and disaster recovery
+8. Total cost per million generated tokens
+
+### Preliminary Recommendation
+
+No final GPU configuration selected.
+
+Memory sizing alone cannot establish the
+optimal GPU count or production feasibility.
+
+Additional compatibility, performance,
+cost, and failure-domain analysis is required.
+
+### Validation Status
+
+Conceptual architecture comparison only.
+
+No NVIDIA GB200 NVL72 deployment has occurred.
